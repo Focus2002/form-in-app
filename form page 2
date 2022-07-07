@@ -1,0 +1,53 @@
+import React from 'react';
+import { View, Text, Button, Image, TouchableOpacity, StyleSheet, Placeholder, TextInput, ImageBackground } from 'react-native';
+
+import { useState } from 'react';
+//import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+
+const App=() => {
+  const [name, setName]=useState('')
+  const [pass, setPass]=useState('')
+  const [email, setEmail]=useState('')
+  return (
+    <ImageBackground style={{flex:1}}
+    source={{uri:'https://images.pexels.com/photos/6889088/pexels-photo-6889088.jpeg'}}>
+      <Text style={{fontSize:50, marginHorizontal:100, marginTop:20, textAlign:'center'}}>Form</Text>
+      <Text style={{fontSize:40}}>{name}</Text>
+      <TextInput style={style1.Text1} placeholder='Enter your Name:'
+      onChangeText={(e) => {setName(e)}}/>
+       <Text style={{fontSize:40}}>{email}</Text>
+      <TextInput style={style1.Text1} placeholder='Email:'
+      onChangeText={(e) => {setEmail(e)}}/>
+       <Text style={{fontSize:40}}>{pass}</Text>
+      <TextInput style={style1.Text1} secureTextEntry={true} placeholder='Password:'
+      onChangeText={(e) => {setPass(e)}}/>
+      <View> <Button
+              title="LOGIN"
+              buttonStyle={{
+                borderColor: 'rgba(78, 116, 289, 1)',
+              }}
+              type="outline"
+              raised
+              titleStyle={{ color: 'rgba(78, 116, 289, 1)' }}
+              containerStyle={{
+                width: 200,
+                marginHorizontal: 50,
+                marginVertical: 10,
+              }}
+            />
+      
+      </View>
+
+      </ImageBackground>
+  )
+}
+export default App;
+const style1=StyleSheet.create({
+  Text1:{
+    fontSize:30, borderWidth:2, margin:10, backgroundColor:'lightblue'
+  },
+  Button:{
+    color:'red', backgroundColor:'red', height:30, width:100,flexDirection: 'row',   alignItems: 'center', marginTop: 50,
+    elevation:3,
+  }
+})
