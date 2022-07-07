@@ -1,0 +1,38 @@
+import React, {useState} from 'react';
+import { View, Text, Button, ScrollView, StyleSheet,Image,ImageBackground,TextInput} from "react-native";
+import { render } from "react-dom";
+
+const App =()=>{
+return(
+<view>
+  <text style= {{fontSize:40}}>Form</text>
+  <TextInput style ={Style1.Text1}
+   placeholder='Enter your name'/>
+   <TextInput style ={Style1.Text1}
+   secureTextEntry= {true}
+   placeholder='Password'/>
+   <TextInput style = {Style1.Text1}
+   placeholder='Enter your Email'/>
+   <Button title ='submit'/>
+</view>
+
+)
+}
+
+export default App;
+const Style1 = StyleSheet.create({
+Text1 : {
+  fontSize:20 ,
+  borderWidth:2,
+  borderColor:'skyblue' ,
+  margin:20
+},
+button1:{
+  color :'red',
+  backgroundcolor: 'red',
+  height:30,
+  width:100
+
+}
+
+})
