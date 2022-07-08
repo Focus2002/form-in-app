@@ -1,0 +1,84 @@
+import React, {useState} from 'react';
+import { View, Text, Button, 
+  Image,ScrollView, StyleSheet, 
+  ImageBackground, TextInput } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import About from './component/About';
+import Contact from './component/Contact';
+import Login from './component/Login';
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+const App=()=>{
+  return(
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name='Home' component={HomeScreen} 
+        />
+        <Stack.Screen name='About' component={AboutScreen}/>
+        <Stack.Screen name='Contact' component={ContactScreen}/>
+      </Stack.Navigator>
+    </NavigationContainer>  
+
+  )
+}
+
+export default App;
+
+function AddScreen(){
+  return(
+  <View>
+    <Text>Add Screen</Text>
+    <About/>
+  </View>
+  )
+}
+function SubScreen({navigation}){
+  return(
+  <View>
+    <Text>Sub Screen</Text>
+    <Button title='go to About' 
+      onPress={()=>navigation.navigate('About')}/>
+  </View>
+  )
+}
+  function DivScreen({navigation}){
+    return(
+    <View>
+      <Text>Div Screen</Text>
+      <Button title='go to Contact' 
+      onPress={()=>navigation.navigate('Contact')}/>
+    </View>
+    )
+  }
+
+function HomeScreen(){
+  return(
+  
+    <Tab.Navigator>
+      <Tab.Screen name='Add' component={AddScreen}/>
+      <Tab.Screen name='Sub' component={SubScreen}/>
+      <Tab.Screen name='Div' component={DivScreen}/>
+    </Tab.Navigator>
+  
+  ) 
+}
+function AboutScreen(){
+  return(
+  <View>
+    <Text>About Screen</Text>
+  </View>
+  )
+  
+}
+function ContactScreen(){
+  return(
+    <Tab.Navigator>
+      <Tab.Screen name='Add1' component={AddScreen}/>
+      <Tab.Screen name='Sub1' component={SubScreen}/>
+    </Tab.Navigator>
+  )  
+}
