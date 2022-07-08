@@ -1,1 +1,133 @@
 
+import * as React from 'react';
+import { Button, Text, View, Image } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
+function DetailsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{fontSize:40}}>Details!</Text>
+      <Image style={{ height:300, width:300 }}
+source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SltOciYuavX1o0JBjs6nxho7dZ6n_zayPA&usqp=CAU'}}/>
+    </View>
+  );
+}
+
+function HomeScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{fontSize:40}}>Home screen</Text>
+      <Image style={{ height:350, width:300 }}
+source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SltOciYuavX1o0JBjs6nxho7dZ6n_zayPA&usqp=CAU'}}/>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+
+function SettingsScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{fontSize:40}}>Settings screen</Text>
+      <Image style={{ height:300, width:300 }}
+source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SltOciYuavX1o0JBjs6nxho7dZ6n_zayPA&usqp=CAU'}}/>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+
+function AboutScreen({ navigation }) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{fontSize:40}}>Settings screen</Text>
+      <Image style={{ height:300, width:300 }}
+source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7SltOciYuavX1o0JBjs6nxho7dZ6n_zayPA&usqp=CAU'}}/>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
+  );
+}
+
+
+const HomeStack = createNativeStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={HomeScreen} />
+      <HomeStack.Screen name="Details" component={DetailsScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+const SettingsStack = createNativeStackNavigator();
+
+function SettingsStackScreen() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
+      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+    </SettingsStack.Navigator>
+  );
+}
+
+const AboutStack = createNativeStackNavigator();
+
+function AboutStackScreen() {
+  return (
+    <SettingsStack.Navigator>
+      <SettingsStack.Screen name="About" component={AboutScreen} />
+      <SettingsStack.Screen name="Details" component={DetailsScreen} />
+    </SettingsStack.Navigator>
+  );
+}
+const Tab = createBottomTabNavigator();
+
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused
+                ? 'ios-information-circle'
+                : 'ios-information-circle-outline';
+            } else if (route.name === 'Settings') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            }
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: 'tomato',
+          tabBarInactiveTintColor: 'gray',
+        })}
+      >
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Settings" component={SettingsScreen} />
+        <Tab.Screen name="About" component={AboutScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStackScreen} />
+        <Tab.Screen name="Settings" component={SettingsStackScreen} />
+        <Tab.Screen name="About" component={AboutStackScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
